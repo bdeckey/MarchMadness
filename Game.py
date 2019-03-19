@@ -42,28 +42,29 @@ class Game:
             bSimPoints += self.teamB.getResult(i)
         aStats = 0
         bStats = 0
+
         for key in self.teamA.stats.keys():
             if (key == "Scoring Offense"):
-                aStats += float(self.teamA.stats[key]["value"])
-                bStats += float(self.teamB.stats[key]["value"])
+                aStats += (((float(self.teamA.stats[key]["value"]) - 88.8) * -1) + 100) * 1.8
+                bStats += (((float(self.teamB.stats[key]["value"]) - 88.8) * -1) + 100) * 1.8
             if (key == "Scoring Defense"):
-                aStats += ((float(self.teamA.stats[key]["value"]) - 55.1) * -1) + 100
-                bStats += ((float(self.teamB.stats[key]["value"]) - 55.1) * -1) + 100
+                aStats += (((float(self.teamA.stats[key]["value"]) - 55.1) * -1) + 100) * 1.7
+                bStats += (((float(self.teamB.stats[key]["value"]) - 55.1) * -1) + 100) * 1.7
             if (key == "Turnover Margin"):
-                aStats += float(self.teamA.stats[key]["value"]) * 20
-                bStats += float(self.teamB.stats[key]["value"]) * 20
+                aStats += (((float(self.teamA.stats[key]["value"]) - 5.8) * -1) + 100) * 1.5
+                bStats += (((float(self.teamB.stats[key]["value"]) - 5.8) * -1) + 100) * 1.5
             if (key == "Assist Turnover Ratio"):
-                aStats += float(self.teamA.stats[key]["value"]) * 56
-                bStats += float(self.teamB.stats[key]["value"]) * 56
+                aStats += (((float(self.teamA.stats[key]["value"]) - 1.76) * -1) + 100) * 2
+                bStats += ((float(self.teamB.stats[key]["value"]) - 1.76) * -1) + 100 * 2
             if (key == "Field-Goal Percentage"):
-                aStats += float(self.teamA.stats[key]["value"]) * 2.5
-                bStats += float(self.teamB.stats[key]["value"]) * 2.5
+                aStats += (((float(self.teamA.stats[key]["value"]) - 53.2)*-1) + 100) * 2
+                bStats += (((float(self.teamB.stats[key]["value"]) - 53.2)*-1) + 100) * 2
             if (key == "Field-Goal Percentage Defense"):
-                aStats += (float(self.teamA.stats[key]["value"]) / 36) * 100 * 1.75
-                bStats += (float(self.teamB.stats[key]["value"]) / 36) * 100 * 1.75
+                aStats += (((float(self.teamA.stats[key]["value"]) - 36.7) * -1) + 100) * 2
+                bStats += (((float(self.teamB.stats[key]["value"]) - 36.7) * -1) + 100) * 2
             if (key == "Three-Point Field-Goal Percentage"):
-                aStats += float(self.teamA.stats[key]["value"]) * 1.5
-                bStats += float(self.teamB.stats[key]["value"]) * 1.5
+                aStats += float(self.teamA.stats[key]["value"]) * (float(self.teamA.stats["Three-Point Field Goals Per Game"]["value"])/4) * 1.5
+                bStats += float(self.teamB.stats[key]["value"]) * (float(self.teamB.stats["Three-Point Field Goals Per Game"]["value"])/4) * 1.5
 
         aNormHard = aStats * (1/(self.teamAHOS * 2)) * 1000
         bNormHard = bStats * (1/(self.teamBHOS * 2)) * 1000
