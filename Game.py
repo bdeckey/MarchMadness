@@ -1,21 +1,19 @@
 import random
 
 class Game:
-    def __init__(self, teamA, teamB, extra=False):
+    def __init__(self, teamA, teamB, extra=True):
         self.teamA = teamA
         self.teamB = teamB
         self.extra = extra
         if (teamA != None and teamB != None):
             self.teamAHOS, self.teamBHOS = self.getNormalHardness()
-            if (teamA.name == "Kansas" or teamB.name == "Kansas"):
-                self.extra = True
 
     def play(self):
         if (self.teamA == None):
-            print(self.teamB.name + " won the Game.")
+            # print(self.teamB.name + " won the Game.")
             return self.teamB
         if (self.teamB == None):
-            print(self.teamA.name + " won the Game.")
+            # print(self.teamA.name + " won the Game.")
             return self.teamA
 
         scores = self.getScores()
@@ -69,8 +67,8 @@ class Game:
                 aStats += float(self.teamA.stats[key]["value"]) * (float(self.teamA.stats["Three-Point Field Goals Per Game"]["value"])/4) * 1.5
                 bStats += float(self.teamB.stats[key]["value"]) * (float(self.teamB.stats["Three-Point Field Goals Per Game"]["value"])/4) * 1.5
 
-        aNormHard = aStats * (1/(self.teamAHOS * 2)) * 1000
-        bNormHard = bStats * (1/(self.teamBHOS * 2)) * 1000
+        aNormHard = aStats * (1/(self.teamAHOS * 2.5)) * 1000
+        bNormHard = bStats * (1/(self.teamBHOS * 2.5)) * 1000
         if (self.extra):
             print(self.teamA.name, aStats, self.teamAHOS)
             print(self.teamB.name, bStats, self.teamBHOS)

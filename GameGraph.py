@@ -41,7 +41,7 @@ for team in teams:
 g = nx.Graph()
 g.add_nodes_from(nodes)
 g.add_edges_from(edges)
-nx.draw_random(g, node_size = node_sizes)
+nx.draw_random(g, node_size = node_sizes, labels=labels)
 
 # nx.draw_random(g, node_size = node_sizes, labels=labels, with_labels=True)
 plt.show()
