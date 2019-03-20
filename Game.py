@@ -40,6 +40,9 @@ class Game:
         for i in similar:
             aSimPoints += self.teamA.getResult(i)
             bSimPoints += self.teamB.getResult(i)
+        if (self.teamA.name in bOpponents):
+            aSimPoints += self.teamA.getResult(self.teamB.name)
+            bSimPoints += self.teamB.getResult(self.teamA.name)
         aStats = 0
         bStats = 0
 
